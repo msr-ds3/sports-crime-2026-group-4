@@ -1,0 +1,17 @@
+.Rproj.user
+.Rhistory
+*~
+*.zip
+.ipynb_checkpoints
+*.gz
+*.csv
+*.tsv
+*.RData
+*.Rdata
+*.rdata
+*.dat
+.DS_Store
+.RDataTmp
+*.RDataTmp
+.vscode/assignment-log.jsonl
+__MACOSX

@@ -1,0 +1,11 @@
+{
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "shellscript": false
+    },
+    "chat.agent.enabled": false,
+    "github.copilot.nextEditSuggestions.enabled": false
+}
