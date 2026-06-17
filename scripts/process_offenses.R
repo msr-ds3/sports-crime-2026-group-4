@@ -35,7 +35,7 @@ for (current_year in 2000:2005) {
 
     mutate(
       is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "assault"), 1, 0),
-      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "vandalism|destruction|damage"), 1, 0)
+      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "vandalism"), 1, 0)
     ) %>%
     # join to get clean city and team names mapped to ORIs
     left_join(unique_oris, by = "ori") %>%
