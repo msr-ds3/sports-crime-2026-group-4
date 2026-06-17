@@ -48,3 +48,6 @@ print(unique_oris)
 unique_oris %>%
   count(city_name.y, state_abbr, name = "number_of_agencies") %>%
   filter(number_of_agencies > 1)
+
+# save unique ORIs to a CSV file so proces_offenses.R script can use it
+write_csv(unique_oris, "data/target_oris_lookup.csv")
