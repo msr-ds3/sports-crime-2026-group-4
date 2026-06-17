@@ -43,3 +43,8 @@ unique_oris <- matched_agencies %>%
 print(unique_oris)
 # Q: why are there 32 rows instead of 26
 # Ans: some college towns have multiple police agencies ...
+
+# find specific cities that are duplicating
+unique_oris %>%
+  count(city_name.y, state_abbr, name = "number_of_agencies") %>%
+  filter(number_of_agencies > 1)
