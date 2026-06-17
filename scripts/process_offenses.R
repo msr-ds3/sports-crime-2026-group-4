@@ -54,7 +54,7 @@ for (current_year in 2000:2005) {
 }
 
 # combine all the clean processed years into one master dataset table
-df_daily_city_crime <- bind_rows(crime_years_list)
+df_daily_city_crime <- bind_rows(crime_years_list) %>%
 # drop any messy spillover dates from late 1999 or early 2006
   filter(date >= "2000-01-01" & date <= "2005-12-31")
 
@@ -67,3 +67,4 @@ glimpse(df_daily_city_crime)
 # why is there 1999 ???
 # late reports? as in late reported incidents spill over to 2000
 # filter(date >= "2000-01-01" & date <= "2005-12-31")
+# dont forget to pipe it; just did 
