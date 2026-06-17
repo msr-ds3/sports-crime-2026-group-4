@@ -68,3 +68,14 @@ glimpse(df_daily_city_crime)
 # late reports? as in late reported incidents spill over to 2000
 # filter(date >= "2000-01-01" & date <= "2005-12-31")
 # dont forget to pipe it; just did 
+
+# count unique team names sanity check
+# 26
+df_daily_city_crime %>% 
+  summarize(n_unique_teams = n_distinct(team_name))
+
+# print unique team names 
+df_daily_city_crime %>%
+  distinct(team_name) %>%
+  arrange(team_name) %>%
+  View()
