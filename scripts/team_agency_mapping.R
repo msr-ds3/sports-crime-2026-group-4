@@ -37,7 +37,7 @@ matched_agencies <- batch_header_clean %>%
 
 # collapse duplicates to get unique ORIs
 unique_oris <- matched_agencies %>% 
-  distinct(ori, city_name.y, state_abbr, team_name, university_name)
+  distinct(ori, city_name_uniqoris, state_abbr, team_name, university_name)
 
 # look 
 print(unique_oris)
@@ -46,7 +46,7 @@ print(unique_oris)
 
 # find specific cities that are duplicating
 unique_oris %>%
-  count(city_name.y, state_abbr, name = "number_of_agencies") %>%
+  count(city_name_uniqoris, state_abbr, name = "number_of_agencies") %>%
   filter(number_of_agencies > 1)
 
 # save unique ORIs to a CSV file so proces_offenses.R script can use it
