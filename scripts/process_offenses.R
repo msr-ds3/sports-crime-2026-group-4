@@ -33,10 +33,9 @@ for (current_year in 2000:2005) {
     # 13C = Intimidation
     # 290 = Vandalism
 
-# (?i) case insenstive matching (make it more robust)
     mutate(
-      is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "(?i)assault"), 1, 0),
-      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "(?i)vandalism"), 1, 0)
+      is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "assault"), 1, 0),
+      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "vandalism"), 1, 0)
     ) %>%
     # join to get clean city and team names mapped to ORIs
     left_join(unique_oris, by = "ori") %>%
