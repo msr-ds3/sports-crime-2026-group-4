@@ -12,7 +12,8 @@ college_towns <- read_csv("scripts/agencies_schools.csv")
 # clean batch header columns to make them match
 # converting everything to lowercase to fix the case mismatch found in the raw data
 batch_header_clean <- batch_header %>%
-  filter(year >= 2000 & year <= 2005) %>%
+  # filter(year >= 2000 & year <= 2005) %>%
+  # wait maybe remove year filter; dont miss agencies logged outside 2000-2005
   # no white spaces
   # convert to lowercase to handle inconsistencies
   # Ex. "montgomery", "al"
