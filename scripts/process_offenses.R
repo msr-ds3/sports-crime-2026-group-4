@@ -14,7 +14,7 @@ crime_years_list <- list()
 for (current_year in 2000:2005) {
   
   # construct path to the offense file for the current loop year
-  file_path <- str_glue("data/nibrs_offense_segment_", current_year, ".csv")
+  file_path <- str_glue("data/nibrs_offense_segment_{current_year}.csv")
   
   # print for sanity so i know which R is running
   print(paste("Processing offense file for year:", current_year))
@@ -33,9 +33,10 @@ for (current_year in 2000:2005) {
     # 13C = Intimidation
     # 290 = Vandalism
 
+# (?i) case insenstive matching (make it more robust)
     mutate(
-      is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "assault"), 1, 0),
-      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "vandalism"), 1, 0)
+      is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "(?i)assault"), 1, 0),
+      is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "(?i)vandalism"), 1, 0)
     ) %>%
     # join to get clean city and team names mapped to ORIs
     left_join(unique_oris, by = "ori") %>%
@@ -44,22 +45,38 @@ for (current_year in 2000:2005) {
     group_by(team_name, city_name.y, state_abbr, date) %>%
     # sum up the crimes for the whole town
     summarize(
-      total_assaults = sum(is_assault),
-      total_vandalism = sum(is_vandalism),
+      # remove na vals before performing calculations
+      # for example: so instead of na it gives us a mean like 3.33
+      total_assaults = sum(is_assault, na.rm = TRUE),
+      total_vandalism = sum(is_vandalism, na.rm = TRUE),
       .groups = "drop"
     )
-  
+
   # store this year's clean data into list
-  crime_years_list[[as.character(current_year)]] = year_data
+  crime_years_list[[as.character(current_year)]] <- year_data
 }
 
 # combine all the clean processed years into one master dataset table
 df_daily_city_crime <- bind_rows(crime_years_list) %>%
 # drop any messy spillover dates from late 1999 or early 2006
-  filter(date >= "2000-01-01" & date <= "2005-12-31")
+  filter(date >= "2000-01-01" & date <= "2005-12-31") %>%
+
+# CRITICAL: Turn implicit missing dates into explicit rows with 0 crime. 
+# If a college town had 0 crimes on a given day, NIBRS omits it. 
+# force it back in
+complete( 
+    nesting(team_name, city_name.y, state_abbr), 
+    date = seq.Date(as.Date("2000-01-01"), as.Date("2005-12-31"), by = "day"), 
+    fill = list(total_assaults = 0, total_vandalism = 0) 
+  ) 
 
 # save the clean aggregated crime data to data folder
 write_csv(df_daily_city_crime, "data/processed_daily_crime_2000_2005.csv")
+
+# sanity checks
+# 1) view blueprint of final dataset
+# 2) verify we have 26 distinct college teams 
+# 3) use to cross verify matches in paper
 
 # look
 glimpse(df_daily_city_crime)
