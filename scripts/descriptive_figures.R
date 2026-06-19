@@ -118,3 +118,23 @@ ggplot(filter(team_saturday_means, Offense == "Assault"),
 
 # save vis to plots folder as .png 
 # ggsave("plots/per_team_saturday_assaults.png", width = 7, height = 5)
+
+# PLOT for PER TEAM VANDALISM
+ggplot(filter(team_saturday_means, Offense == "Vandalism"), 
+       aes(x = game_status, y = Mean, fill = game_status)) +
+  geom_col(color = "black", alpha = 0.85, width = 0.7) +
+  geom_errorbar(aes(ymin = pmax(0, Mean - SE), 
+                    ymax = Mean + SE), width = 0.2, linewidth = 0.5) +
+  
+  facet_wrap(~team_name, scales = "free_y", ncol = 4) +
+  
+  labs(
+    title = "Per-Team Saturday Vandalism Means by Game Status",
+    subtitle = "Replication Sample (2000-2005)",
+    x = "Game Day Status",
+    y = "Average Daily Vandalism Incidents"
+  ) +
+  scale_fill_manual(values = c("No Game" = "red", "Away" = "blue", "Home" = "green")) 
+
+# save vis to plots folder as .png 
+# ggsave("plots/per_team_saturday_vandalism.png", width = 7, height = 5)
