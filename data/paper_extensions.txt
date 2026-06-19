@@ -1,0 +1,10 @@
+From here, think about extensions to the paper. 
+Could you have approached this problem differently with the same data? 
+Are there other ways to plot the same information? 
+Are there other questions you could ask of the crime or 
+football data that the paper doesn't explore? 
+Write down the questions your group is interested in 
+along with a plan for how you can tackle them with the data you have.
+
+# here
+
