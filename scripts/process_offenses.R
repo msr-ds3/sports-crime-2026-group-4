@@ -32,7 +32,7 @@ for (current_year in 2000:2005) {
     # 13B = Simple
     # 13C = Intimidation
     # 290 = Vandalism
-
+    
     mutate(
       is_assault = if_else(str_detect(str_to_lower(ucr_offense_code), "assault"), 1, 0),
       is_vandalism = if_else(str_detect(str_to_lower(ucr_offense_code), "vandalism"), 1, 0)

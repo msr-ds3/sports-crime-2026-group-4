@@ -46,9 +46,10 @@ print(unique_oris)
 # Ans: some college towns have multiple police agencies ...
 
 # find specific cities that are duplicating
+# this here is to check the schools with multiple agencies 
 unique_oris %>%
   count(city_name.y, state_abbr, name = "number_of_agencies") %>%
   filter(number_of_agencies > 1)
 
-# save unique ORIs to a CSV file so proces_offenses.R script can use it
+# save unique ORIs to a CSV file so process_offenses.R script can use it
 write_csv(unique_oris, "data/target_oris_lookup.csv")
