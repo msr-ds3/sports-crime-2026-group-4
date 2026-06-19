@@ -7,4 +7,32 @@ Write down the questions your group is interested in
 along with a plan for how you can tackle them with the data you have.
 
 # here
+This was my brainstorming session,
+After reading the paper but before even touching the code.
 
+TLDR:
+Should the replication and extension phases be treated sequentially or in parallel?
+
+Should we approach the project by first conducting a replication and then thinking about extensions afterward, or should we be considering potential extensions from the beginning as we design and execute the replication?
+
+When do we stop being replicators and start being researchers extending the work? 
+
+TLDR:
+Since this paper can be viewed from so many different lenses: econ, psych, social, math, ds - what specific lens do you want our team to go in with? Is each group focusing on a different lens or should all the subgroups be unified in their “lens”? 
+
+switching from negative binomial model to a simple linear regression:
+What tips or approaches do you recommend for handling linear shortcomings: should we just address them as limitations, or are there specific corrections you want us to look out for?
+
+Since the paper only uses 26 of 119 (many) eligible agencies and some have large data gaps, will our linear model's fixed effects safely absorb those missing periods, or do we need to manually adjust for unreported and underreported crime? 
+
+Period 2000 - 2005:
+Cross reference with SRS?
+Migration from SRS to NIBRS
+Not an automatic 1:1 migration. Agencies that failed to transition by jan 2021 deadline their data excluded. 
+
+Was this data previously reported in SRS (Summary Reporting System) since it was the primary data system prior to 2021 and migrated from SRS or was it a fresh state reported directly to NIBRS (new crime reporting standard)?
+
+Draft for coherent question: 
+This was for the period 2000 - 2005, should we cross reference with SRS (Summary Reporting System) pre 2021 primary data system or just stick to NIBRS? Migrated to NIBRS Jan 2021 but not an automatic 1:1 migration? - possible weird stuff with data transfer and/or data continuity that we should consider or just leave out? 
+
+Since night games likely push fan drinking and vandalism past midnight, should we stick to the daily format or try to track crime in the strict 12-to-24 hours post-kickoff? 
